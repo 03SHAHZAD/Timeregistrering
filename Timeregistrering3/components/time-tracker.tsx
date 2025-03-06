@@ -60,30 +60,30 @@ const initialActivities: Activity[] = [
   },
   {
     id: "2",
-    caseId: "CASE001",
+    caseId: "SAK 9",
     day: "2025-03-04", // Tuesday
     hours: 1.75,
-    description: "Client Meeting",
+    description: "Drap",
     activityType: "Meeting",
     billable: true,
     billed: false,
   },
   {
     id: "3",
-    caseId: "CASE002",
+    caseId: "SAK 8",
     day: "2025-03-03", // Monday
     hours: 3,
-    description: "Due Diligence",
+    description: "Overprøving Tingretten",
     activityType: "Research",
     billable: true,
     billed: false,
   },
   {
     id: "4",
-    caseId: "CASE003",
+    caseId: "SAK 266",
     day: "2025-03-05", // Wednesday
     hours: 1.25,
-    description: "Document Preparation",
+    description: "Tvangsfravikelse",
     activityType: "Drafting",
     billable: true,
     billed: false,
