@@ -30,30 +30,30 @@ export type Case = {
 
 // Mock data
 const mockCases: Case[] = [
-  { id: "CASE001", description: "Smith vs. Johnson" },
-  { id: "CASE002", description: "Corporate Merger - XYZ Corp" },
-  { id: "CASE003", description: "Estate Planning - Williams" },
-  { id: "CASE004", description: "Intellectual Property - Tech Startup" },
+  { id: "SAK 67", description: "Tvangfravikelse" },
+  { id: "SAK 9", description: "Drap" },
+  { id: "SAK 8", description: "Overprøving Tingretten" },
+  { id: "SAK 266", description: "Erstatsningkrav" },
 ]
 
 const activityTypes = [
-  "Meeting",
-  "Preparation",
-  "Research",
-  "Drafting",
-  "Court Appearance",
-  "Client Call",
-  "Review",
-  "Other",
+  "Juridisk Bistand",
+  "Forhandlinger",
+  "MediaKommunikasjon",
+  "Undersøkelse",
+  "Reisetid ",
+  "Mekling",
+  "Kntraksgjennomgang",
+  "Admin",
 ]
 
 const initialActivities: Activity[] = [
   {
     id: "1",
-    caseId: "CASE001",
+    caseId: "Sak 67",
     day: "2025-03-03", // Monday
     hours: 2.5,
-    description: "Contract Review",
+    description: "Tvangsfravikelse",
     activityType: "Review",
     billable: true,
     billed: true,
@@ -353,7 +353,7 @@ export default function TimeTracker() {
 
         {/* Week Navigation */}
         <div className="flex items-center justify-between mt-6">
-          <div className="text-lg font-medium">Week of {format(currentWeek, "MMMM d, yyyy")}</div>
+          <div className="text-lg font-medium">Uke {format(currentWeek, "MMMM d, yyyy")}</div>
           <div className="flex items-center space-x-2">
             <Button variant="outline" size="icon" onClick={goToPreviousWeek}>
               <ChevronLeft className="h-4 w-4" />
@@ -388,7 +388,7 @@ export default function TimeTracker() {
           <table className="w-full border-collapse">
             <thead>
               <tr className="bg-gray-100">
-                <th className="py-3 px-4 text-left font-medium text-gray-700 w-1/4">Case</th>
+                <th className="py-3 px-4 text-left font-medium text-gray-700 w-1/4">Sak</th>
                 {weekDays.map((day) => (
                   <th key={day.isoString} className="py-3 px-4 text-center font-medium text-gray-700">
                     <div>{day.dayShort}</div>
@@ -400,7 +400,7 @@ export default function TimeTracker() {
             <tbody>
               {/* Expected Hours Row */}
               <tr className="border-t border-gray-200">
-                <td className="py-3 px-4 font-medium text-gray-400">Expected Hours</td>
+                <td className="py-3 px-4 font-medium text-gray-400">Forventedet Timer</td>
                 {weekDays.map((day) => (
                   <td key={day.isoString} className="py-3 px-4 text-center font-medium text-gray-400">
                     8.0
@@ -410,7 +410,7 @@ export default function TimeTracker() {
 
               {/* Actual Hours Row */}
               <tr className="border-t border-gray-200 bg-gray-50">
-                <td className="py-3 px-4 font-medium text-gray-400">Actual Hours</td>
+                <td className="py-3 px-4 font-medium text-gray-400">Faktiske Timer</td>
                 {weekDays.map((day) => {
                   const totalHours = getDayTotalHours(day.isoString)
                   return (
