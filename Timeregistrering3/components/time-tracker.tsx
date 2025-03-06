@@ -88,16 +88,7 @@ const initialActivities: Activity[] = [
     billable: true,
     billed: false,
   },
-  {
-    id: "5",
-    caseId: "CASE004",
-    day: "2025-03-06", // Thursday
-    hours: 2,
-    description: "Patent Research",
-    activityType: "Research",
-    billable: false,
-    billed: false,
-  },
+  
 ]
 
 export default function TimeTracker() {
@@ -225,7 +216,7 @@ export default function TimeTracker() {
   // Handle submit week
   const handleSubmitWeek = () => {
     // In a real application, this would send the data to a server
-    alert("Week submitted successfully!")
+    alert(" Submitted!")
   }
 
   // Calculate total hours for each day
@@ -247,11 +238,11 @@ export default function TimeTracker() {
     <div className="container mx-auto py-6 space-y-8">
       {/* Header Section - Quick Activity Logging */}
       <div className="bg-white rounded-lg shadow-md p-6">
-        <h2 className="text-2xl font-bold mb-4">Quick Activity Log</h2>
+        <h2 className="text-2xl font-bold mb-4">Timeregistrering</h2>
         <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-end">
           {/* Weekday Selector */}
           <div>
-            <label className="block text-sm font-medium mb-1">Day</label>
+            <label className="block text-sm font-medium mb-1">Dag</label>
             <Select value={newActivity.day} onValueChange={(value) => setNewActivity({ ...newActivity, day: value })}>
               <SelectTrigger>
                 <SelectValue placeholder="Select day" />
@@ -268,7 +259,7 @@ export default function TimeTracker() {
 
           {/* Case Selector */}
           <div>
-            <label className="block text-sm font-medium mb-1">Case</label>
+            <label className="block text-sm font-medium mb-1">Sak</label>
             <Select
               value={newActivity.caseId}
               onValueChange={(value) => setNewActivity({ ...newActivity, caseId: value })}
@@ -288,7 +279,7 @@ export default function TimeTracker() {
 
           {/* Activity Type */}
           <div>
-            <label className="block text-sm font-medium mb-1">Activity</label>
+            <label className="block text-sm font-medium mb-1">Aktivitet</label>
             <Select
               value={newActivity.activityType}
               onValueChange={(value) => setNewActivity({ ...newActivity, activityType: value })}
@@ -308,7 +299,7 @@ export default function TimeTracker() {
 
           {/* Description */}
           <div>
-            <label className="block text-sm font-medium mb-1">Description</label>
+            <label className="block text-sm font-medium mb-1">Beskrivelse</label>
             <Input
               value={newActivity.description}
               onChange={(e) => setNewActivity({ ...newActivity, description: e.target.value })}
@@ -318,7 +309,7 @@ export default function TimeTracker() {
 
           {/* Time Tracker */}
           <div>
-            <label className="block text-sm font-medium mb-1">Hours</label>
+            <label className="block text-sm font-medium mb-1">Timer</label>
             <div className="flex items-center">
               <Button
                 variant="outline"
@@ -343,7 +334,7 @@ export default function TimeTracker() {
           {/* Action Buttons */}
           <div className="flex space-x-2">
             <Button onClick={handleAddActivity} className="bg-green-600 hover:bg-green-700 text-white">
-              Add
+              LeggTil
             </Button>
             <Button onClick={handleSubmitWeek} className="bg-blue-800 hover:bg-blue-900 text-white">
               Submit Week
