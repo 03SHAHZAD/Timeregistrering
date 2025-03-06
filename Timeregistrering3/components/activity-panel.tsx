@@ -95,7 +95,7 @@ export function ActivityPanel({
     <div className="flex flex-col space-y-4">
       <div className="flex items-center justify-between">
         <div className="text-sm text-gray-500">
-          {isNewMode ? "Add new activity" : "Edit activity"}
+          {isNewMode ? "Legg Til Detaljer" : "Rediger Detaljer"}
           {caseName && ` - ${caseName}`}
         </div>
         <Button variant="ghost" size="sm" onClick={onClose}>
@@ -128,7 +128,7 @@ export function ActivityPanel({
           <Input
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-            placeholder="Activity description"
+            placeholder="Beskrivelse"
           />
         </div>
 
@@ -167,7 +167,7 @@ export function ActivityPanel({
             </Button>
           )}
           <Button size="sm" onClick={handleSave} className="bg-green-500 hover:bg-green-600 text-white">
-            {isNewMode ? "Add" : "Save"}
+            {isNewMode ? "LeggTil" : "Oppdater"}
           </Button>
         </div>
       </div>

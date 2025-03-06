@@ -39,11 +39,11 @@ const mockCases: Case[] = [
 const activityTypes = [
   "Juridisk Bistand",
   "Forhandlinger",
-  "MediaKommunikasjon",
+  "Kommunikasjon",
   "Undersøkelse",
   "Reisetid ",
   "Mekling",
-  "Kntraksgjennomgang",
+  "Kontraksgjennomgang",
   "Admin",
 ]
 
@@ -245,7 +245,7 @@ export default function TimeTracker() {
             <label className="block text-sm font-medium mb-1">Dag</label>
             <Select value={newActivity.day} onValueChange={(value) => setNewActivity({ ...newActivity, day: value })}>
               <SelectTrigger>
-                <SelectValue placeholder="Select day" />
+                <SelectValue placeholder="Velg Dag" />
               </SelectTrigger>
               <SelectContent>
                 {weekDays.map((day) => (
