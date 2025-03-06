@@ -99,13 +99,13 @@ export function ActivityPanel({
           {caseName && ` - ${caseName}`}
         </div>
         <Button variant="ghost" size="sm" onClick={onClose}>
-          lukk
+          Close
         </Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="space-y-2">
-          <label className="text-sm font-medium">Aktivitet</label>
+          <label className="text-sm font-medium">Activity Type</label>
           <Select
             value={formData.activityType}
             onValueChange={(value) => setFormData({ ...formData, activityType: value })}
@@ -124,7 +124,7 @@ export function ActivityPanel({
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium">Beskrivelse</label>
+          <label className="text-sm font-medium">Description</label>
           <Input
             value={formData.description}
             onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -133,7 +133,7 @@ export function ActivityPanel({
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium">Timer</label>
+          <label className="text-sm font-medium">Hours</label>
           <div className="flex items-center">
             <Button variant="outline" size="sm" onClick={() => handleHoursChange(false)} className="h-8 w-8">
               -
@@ -155,7 +155,18 @@ export function ActivityPanel({
               onCheckedChange={(checked) => setFormData({ ...formData, billable: checked === true })}
             />
             <label htmlFor="billable" className="text-sm">
-              Fakturert
+              Billable
+            </label>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Checkbox
+              id="billed"
+              checked={formData.billed}
+              onCheckedChange={(checked) => setFormData({ ...formData, billed: checked === true })}
+            />
+            <label htmlFor="billed" className="text-sm">
+              Billed
             </label>
           </div>
         </div>
@@ -163,7 +174,7 @@ export function ActivityPanel({
         <div className="flex items-center space-x-2">
           {!isNewMode && (
             <Button variant="destructive" size="sm" onClick={handleDelete}>
-              Slett
+              Delete
             </Button>
           )}
           <Button size="sm" onClick={handleSave} className="bg-green-500 hover:bg-green-600 text-white">
