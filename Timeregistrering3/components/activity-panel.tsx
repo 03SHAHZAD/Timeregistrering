@@ -111,7 +111,7 @@ export function ActivityPanel({
             onValueChange={(value) => setFormData({ ...formData, activityType: value })}
           >
             <SelectTrigger>
-              <SelectValue placeholder="Select activity type" />
+              <SelectValue placeholder="Velg Aktivitet" />
             </SelectTrigger>
             <SelectContent>
               {activityTypes.map((type) => (

@@ -416,7 +416,7 @@ export default function TimeTracker() {
                 <td className="py-3 px-4 font-medium text-gray-400">Forventedet Timer</td>
                 {weekDays.map((day) => (
                   <td key={day.isoString} className="py-3 px-4 text-center font-medium text-gray-400">
-                    8.0
+                    8.00
                   </td>
                 ))}
               </tr>
@@ -438,7 +438,7 @@ export default function TimeTracker() {
                             : "text-green-500/70",
                       )}
                     >
-                      {totalHours.toFixed(1)}
+                      {totalHours.toFixed(2)}
                     </td>
                   )
                 })}
@@ -488,7 +488,7 @@ export default function TimeTracker() {
                                 selectedActivity?.id === firstActivity.id ? "ring-2 ring-blue-500" : "",
                               )}
                             >
-                              <div className="text-xl font-medium">{firstActivity.hours.toFixed(1)}</div>
+                              <div className="text-xl font-medium">{firstActivity.hours.toFixed(2)}</div>
                               <div className="text-sm truncate max-w-[120px]">{firstActivity.description}</div>
                               {firstActivity.billed && (
                                 <div className="flex justify-center mt-1">
@@ -519,7 +519,7 @@ export default function TimeTracker() {
                                     selectedActivity?.id === activity.id ? "ring-2 ring-blue-500" : "",
                                   )}
                                 >
-                                  <div className="text-xl font-medium">{activity.hours.toFixed(1)}</div>
+                                  <div className="text-xl font-medium">{activity.hours.toFixed(2)}</div>
                                   <div className="text-sm truncate max-w-[120px]">{activity.description}</div>
                                   {activity.billed && (
                                     <div className="flex justify-center mt-1">
