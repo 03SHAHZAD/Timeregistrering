@@ -2,10 +2,12 @@
 
 import React, { useState } from "react"
 import { format, startOfWeek, addDays, addWeeks, subWeeks } from "date-fns"
+import { nb } from "date-fns/locale"
 import { CalendarIcon, ChevronLeft, ChevronRight, Check } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
+import { Checkbox } from "@/components/ui/checkbox"
 import { cn } from "@/lib/utils"
 import { Calendar } from "@/components/ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
@@ -88,7 +90,6 @@ const initialActivities: Activity[] = [
     billable: true,
     billed: false,
   },
-  
 ]
 
 export default function TimeTracker() {
@@ -103,11 +104,12 @@ export default function TimeTracker() {
 
   // Form state for quick logging
   const [newActivity, setNewActivity] = useState({
-    day: format(new Date(), "EEEE"),
+    day: format(new Date(), "EEEE", { locale: nb }),
     caseId: "",
     activityType: "",
     description: "",
     hours: 0.25,
+    billed: false,
   })
 
   // Generate weekdays for the current week
@@ -115,8 +117,8 @@ export default function TimeTracker() {
     const day = addDays(currentWeek, i)
     return {
       date: day,
-      dayName: format(day, "EEEE"),
-      dayShort: format(day, "EEE"),
+      dayName: format(day, "EEEE", { locale: nb }).toUpperCase(),
+      dayShort: format(day, "EEE", { locale: nb }).toUpperCase(),
       dayNumber: format(day, "d"),
       isoString: format(day, "yyyy-MM-dd"),
     }
@@ -145,7 +147,7 @@ export default function TimeTracker() {
       description: newActivity.description,
       activityType: newActivity.activityType,
       billable: true, // Default to billable
-      billed: false,
+      billed: newActivity.billed,
     }
 
     // Add the new activity and sort them by day
@@ -159,6 +161,7 @@ export default function TimeTracker() {
       activityType: "",
       description: "",
       hours: 0.25,
+      billed: false,
     })
 
     // Scroll to the case in the table
@@ -239,7 +242,7 @@ export default function TimeTracker() {
       {/* Header Section - Quick Activity Logging */}
       <div className="bg-white rounded-lg shadow-md p-6">
         <h2 className="text-2xl font-bold mb-4">Timeregistrering</h2>
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-end">
+        <div className="grid grid-cols-1 md:grid-cols-7 gap-4 items-end">
           {/* Weekday Selector */}
           <div>
             <label className="block text-sm font-medium mb-1">Dag</label>
@@ -265,7 +268,7 @@ export default function TimeTracker() {
               onValueChange={(value) => setNewActivity({ ...newActivity, caseId: value })}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select case" />
+                <SelectValue placeholder="Velg Sak" />
               </SelectTrigger>
               <SelectContent>
                 {mockCases.map((caseItem) => (
@@ -285,7 +288,7 @@ export default function TimeTracker() {
               onValueChange={(value) => setNewActivity({ ...newActivity, activityType: value })}
             >
               <SelectTrigger>
-                <SelectValue placeholder="Select activity" />
+                <SelectValue placeholder="Velg Aktivitet" />
               </SelectTrigger>
               <SelectContent>
                 {activityTypes.map((type) => (
@@ -303,7 +306,7 @@ export default function TimeTracker() {
             <Input
               value={newActivity.description}
               onChange={(e) => setNewActivity({ ...newActivity, description: e.target.value })}
-              placeholder="Brief description"
+              placeholder="Beskrivelse"
             />
           </div>
 
@@ -331,20 +334,38 @@ export default function TimeTracker() {
             </div>
           </div>
 
+          {/* Billed Checkbox */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Fakturert</label>
+            <div className="flex items-center h-10">
+              <Checkbox
+                id="quick-billed"
+                checked={newActivity.billed}
+                onCheckedChange={(checked) => setNewActivity({ ...newActivity, billed: checked === true })}
+              />
+              <label htmlFor="quick-billed" className="ml-2 text-sm">
+                Fakturert
+              </label>
+            </div>
+          </div>
+
           {/* Action Buttons */}
           <div className="flex space-x-2">
             <Button onClick={handleAddActivity} className="bg-green-600 hover:bg-green-700 text-white">
               LeggTil
             </Button>
             <Button onClick={handleSubmitWeek} className="bg-blue-800 hover:bg-blue-900 text-white">
-              Submit Week
+              Send inn uke
             </Button>
           </div>
         </div>
 
         {/* Week Navigation */}
         <div className="flex items-center justify-between mt-6">
-          <div className="text-lg font-medium">Uke {format(currentWeek, "MMMM d, yyyy")}</div>
+          <div className="text-lg font-medium">
+             {format(currentWeek, "MMMM", { locale: nb }).toUpperCase()}{" "}
+            {format(currentWeek, "d, yyyy", { locale: nb })}
+          </div>
           <div className="flex items-center space-x-2">
             <Button variant="outline" size="icon" onClick={goToPreviousWeek}>
               <ChevronLeft className="h-4 w-4" />
@@ -362,6 +383,7 @@ export default function TimeTracker() {
                   selected={currentWeek}
                   onSelect={(date) => date && goToWeek(date)}
                   initialFocus
+                  locale={nb}
                 />
               </PopoverContent>
             </Popover>
