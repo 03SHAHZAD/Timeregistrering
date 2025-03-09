@@ -355,7 +355,7 @@ export default function TimeTracker() {
               LeggTil
             </Button>
             <Button onClick={handleSubmitWeek} className="bg-blue-800 hover:bg-blue-900 text-white">
-              Send inn uke
+              Submit
             </Button>
           </div>
         </div>
